@@ -1,0 +1,105 @@
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<h3>Manage Departments</h3>
+<hr>
+<button class="btn btn-outline-info btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample"
+    aria-expanded="false" aria-controls="collapseExample" >
+    +
+</button>&nbsp; <span class="badge badge-danger">Departments</span>
+
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <div class="container">
+
+            <!-- Modal -->
+
+            <form [formGroup]="deptform" (ngSubmit)="submit()">
+                <h3>New Department</h3>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Department-Code</label>
+                        <input type="text" class="form-control" formControlName="deptcode" id="inputEmail4"
+                            placeholder="123">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword4">Name of Department</label>
+                        <input type="text" class="form-control" formControlName="deptname" id="inputPassword4"
+                            placeholder="ADMIN">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">Short-Code</label>
+                    <input type="text" class="form-control" id="inputAddress" formControlName="deptshort"
+                        placeholder="CEO">
+                </div>
+                <div class="form-group">
+                    <label for="level">Level</label>
+                    <select class="custom-select mr-sm-2" formControlName="deptlevel" id="inlineFormCustomSelect">
+                        <option selected value="" disabled>Select-Level</option>
+                        <option value="L1">Level-1</option>
+                        <option value="L2">Level-2</option>
+                        <option value="L3">Level-3</option>
+                        <option value="L4">Level-4</option>
+                        <option value="L5">Level-5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">Description</label>
+                    <textarea class="form-control" id="inputAddress1" formControlName="positiondesc"
+                        placeholder="Description"></textarea>
+                </div>
+                <div class="form-group">
+
+                    <label for="level">Status</label>
+
+                    <select class="custom-select mr-sm-2" formControlName="status" id="inlineFormCustomSelect1">
+                        <option selected value="" disabled>Status</option>
+                        <option value="Active">Active</option>
+                        <option value="Blocked">Blocked</option>
+
+                    </select>
+
+                </div>
+                <button type="submit" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample"
+                    aria-expanded="false" aria-controls="collapseExample">Save</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+<div class="table-responsive-lg mt-1">
+    <table class="table table-bordered" >
+        <thead class="bg-dark text-white">
+            <tr>
+                <th scope="col">Dept.Code</th>
+                <th scope="col">Dept.Name</th>
+                <th scope="col">Short</th>
+                <th scope="col">Level</th>
+                <th scope="col">Desc</th>
+                <th scope="col">Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of getalldept">
+                <td>{{p.deptcode}}</td>
+                <td>{{p.deptname}}</td>
+                <td>{{p.deptshort}}</td>
+                <td>{{p.deptlevel}}</td>
+                <td>{{p.positiondesc}}</td>
+                <td><span [ngClass]="p.status=='Active'?'badge badge-success':'badge badge-danger'">{{p.status}}</span>
+                </td>
+                <td><button class="btn btn-outline-info btn-sm" [routerLink]="['./edit',p.did]" type="button"
+                        data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                        aria-controls="collapseExample">
+                        <i class="fas fa-user-edit"></i>
+                    </button>&nbsp;
+                    <button type="button"  (click)="deletedept(p.did)" class="btn btn-outline-danger btn-sm "><i
+                            class="far fa-trash-alt"></i></button>
+                </td>
+            </tr>
+
+
+        </tbody>
+
+    </table>
+</div>

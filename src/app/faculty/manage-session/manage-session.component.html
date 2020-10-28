@@ -1,0 +1,187 @@
+<h3>Add Session</h3>
+<hr>
+<!-- <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog> -->
+<button class="btn btn-outline-info btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample"
+    aria-expanded="false" aria-controls="collapseExample">
+    +
+</button> &nbsp; <span class="badge badge-success">Sessions</span>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <div class="container">
+            <form [formGroup]="sform" (ngSubmit)="submit()">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="inputcd">StartTime</label>
+                        <input type="time" class="form-control" placeholder="2020JAN01" formControlName="stime" id="inputcd">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputcd">EndTime</label>
+                        <input type="time" class="form-control" placeholder="2020JAN01" formControlName="etime" id="inputcd">
+                    </div>
+                   
+                </div>
+                <div class="form-row">                    
+                    <div class="form-group col-md-3">
+                        <label for="inputcd1">Monday</label>
+                        <select formControlName="mon" class="form-control">
+                            <option value="">Select Batch</option>
+                            <option  *ngFor="let b of getbatchbyid" value="{{b.batchid}}">{{b.batchname}}</option>
+                           
+                         </select>
+                    </div><div class="form-group col-md-3">
+                        <label for="inputcd1">Tuseday</label>
+                        <select formControlName="tue" class="form-control">
+                            <option value="">Select Batch</option>
+                            <option  *ngFor="let b of getbatchbyid" value="{{b.batchid}}">{{b.batchname}}</option>
+                           
+                         </select>
+                    </div><div class="form-group col-md-3">
+                        <label for="inputcd1">Wednesday</label>
+                        <select formControlName="wed" class="form-control">
+                            <option value="">Select Batch</option>
+                            <option  *ngFor="let b of getbatchbyid" value="{{b.batchid}}">{{b.batchname}}</option>
+                           
+                         </select>
+                    </div><div class="form-group col-md-3">
+                        <label for="inputcd1">Thursday</label>
+                        <select formControlName="thu" class="form-control">
+                            <option value="">Select Batch</option>
+                            <option  *ngFor="let b of getbatchbyid" value="{{b.batchid}}">{{b.batchname}}</option>
+                           
+                         </select>
+                    </div><div class="form-group col-md-3">
+                        <label for="inputcd1">Friday</label>
+                        <select formControlName="fri" class="form-control">
+                            <option value="">Select Batch</option>
+                            <option  *ngFor="let b of getbatchbyid" value="{{b.batchid}}">{{b.batchname}}</option>
+                           
+                         </select>
+                    </div><div class="form-group col-md-3">
+                        <label for="inputcd1">Saturday</label>
+                        <select formControlName="sat" class="form-control">
+                            <option value="">Select Batch</option>
+                            <option  *ngFor="let b of getbatchbyid" value="{{b.batchid}}">{{b.batchname}}</option>
+                           
+                         </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputcd1">Sunday</label>
+                        <select formControlName="sun" class="form-control">
+                            <option value="">Select Batch</option>
+                            <option  *ngFor="let b of getbatchbyid" value="{{b.batchid}}">{{b.batchname}}</option>
+                           
+                         </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputename2">Status</label>
+                        <select id="inputename2" class="form-control" formControlName="status">
+                            <option selected value="">Choose Status</option>
+                            <option value="Active">Active</option>
+                            <option value="Blocked">Blocked</option>
+                        </select>
+                    </div>
+                </div>
+                              
+                <button type="submit" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample"
+                aria-expanded="false" aria-controls="collapseExample">AddSession</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="table-responsive-lg mt-1">
+    <table class="table table-bordered" >
+        <thead class="bg-dark text-white">
+            <tr>
+                <th scope="col">StartTime</th>
+                <th scope="col">EndTime</th>
+                <th scope="col">Monday</th>
+                <th scope="col">Tuseday</th>
+                <th scope="col">Wednesday</th>
+                <th scope="col">Thursday</th>
+                <th scope="col">Friday</th>
+                <th scope="col">Saturday</th>
+                <th scope="col">Sunday</th>
+                <th scope="col">status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of getsessions">
+                <td>{{p.stime}}</td>
+                <td>{{p.etime}}</td>                
+                <td>{{p.mon}}</td>
+                <td>{{p.tue}}</td>
+                <td>{{p.wed}}</td>
+                <td>{{p.thu}}</td>
+                <td>{{p.fri}}</td>
+                <td>{{p.sat}}</td>
+                <td>{{p.sun}}</td>
+                <td><span [ngClass]="p.status=='Active'?'badge badge-success':'badge badge-danger'">{{p.status}}</span>
+                </td>
+                <td><button class="btn btn-outline-info btn-sm" [routerLink]="['./edit',p.sid]" type="button"
+                        data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                        aria-controls="collapseExample">
+                        <i class="fas fa-user-edit"></i>
+                    </button>&nbsp;
+                    <button type="button"  (click)="deletestud(p.sid)" class="btn btn-outline-danger btn-sm "><i
+                            class="far fa-trash-alt"></i></button>
+                </td>
+            </tr>
+
+
+        </tbody>
+
+    </table>
+</div>
+
+<!-- <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">TIME</th>
+        <th scope="col">MONDAY</th>
+        <th scope="col">TUESDAY</th>
+        <th scope="col">WEDNESDAY</th>
+        <th scope="col">THURSDAY</th>
+        <th scope="col">FRIDAY</th>
+        <th scope="col">SATURDAY</th>
+        <th scope="col">SUNDAY</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td><p><button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            bn
+          </button>
+        </p>
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+            <div class="input-group">
+                <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                  <option selected>Choose-Batch</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button">Change</button>
+                </div>
+              </div>
+          </div>
+        </div></td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>  -->

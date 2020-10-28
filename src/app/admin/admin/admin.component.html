@@ -1,0 +1,42 @@
+<div class="btn-group">
+  <button type="button" class="btn btn-outline-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+    aria-expanded="false">
+    Manage
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" routerLink="./users">Users</a>
+    <a class="dropdown-item" routerLink="./profile">Profiles</a>
+
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Separated link</a>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="card text-white bg-primary col-3 mb-3 mr-3" style="max-width: 18rem;">
+    <div class="card-header">EMPLOYEES</div>
+    <div class="card-body ">
+      <h5 class="card-title">TOTAL :- {{getall[0].ce | number:'2.0'}}</h5>
+    </div>
+  </div>
+  <div class="card text-white bg-info col-3 mb-3 mr-3" style="max-width: 18rem;">
+    <div class="card-header">STUDENTS</div>
+    <div class="card-body ">
+      <h5 class="card-title">TOTAL :- {{getallstd[0].ca | number:'2.0'}}</h5>
+    </div>
+  </div>
+  <div class="card text-white bg-success col-3 mb-3 mr-3" style="max-width: 18rem;">
+    <div class="card-header">CLUB-STUDENT</div>
+    <div class="card-body ">
+      <h5 class="card-title">TOTAL :- {{getallc[0].cc | number:'2.0'}}</h5>
+    </div>
+  </div>
+  <div class="card text-white bg-warning  col-3 mb-3 mr-3" style="max-width: 18rem;">
+    <div class="card-header">GEN-STUDENT&nbsp;&nbsp;&nbsp;|&nbsp; ONE TO ONE </div>
+    <div class="card-body ">
+      <h5 class="card-title">TOTAL :-{{getallg[0].cc | number:'2.0'}}&nbsp;|&nbsp;{{getallo[0].cc | number:'2.0'}}</h5>
+    </div>
+  </div>
+</div>
+<hr>
+<router-outlet></router-outlet>

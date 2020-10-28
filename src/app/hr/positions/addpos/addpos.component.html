@@ -1,0 +1,47 @@
+<div class="modal-body">
+    <form [formGroup]="posform" *ngIf="posform" (ngSubmit)="submit()">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Position-Code</label>
+                <input type="text" class="form-control" formControlName="poscode" id="inputEmail4" placeholder="123">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Name of Position</label>
+                <input type="text" class="form-control" formControlName="posname" id="inputPassword4" placeholder="ADMIN">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress">Short-Code</label>
+            <input type="text" class="form-control" id="inputAddress" formControlName="posshort"
+                placeholder="CEO">
+        </div>
+        <div class="form-group">
+            <label for="level">Level</label>
+            <select class="custom-select mr-sm-2" formControlName="poslevel" id="inlineFormCustomSelect">
+                <option selected value="" disabled>Select-Level</option>
+                <option value="L1">Level-1</option>
+                <option value="L2">Level-2</option>
+                <option value="L3">Level-3</option>
+                <option value="L4">Level-4</option>
+                <option value="L5">Level-5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress">Description</label>
+            <textarea class="form-control" id="inputAddress1" formControlName="description" placeholder="Description"></textarea>
+        </div>
+        <div class="form-group">
+
+            <label for="level">Status</label>
+
+            <select class="custom-select mr-sm-2" formControlName="status" id="inlineFormCustomSelect1">
+                <option selected value="" disabled>Status</option>
+                <option value="Active">Active</option>
+                <option value="Blocked">Blocked</option>
+
+            </select>
+
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>

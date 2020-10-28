@@ -1,0 +1,122 @@
+<h3>Manage Employees</h3>
+<hr>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<button class="btn btn-outline-info btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample"
+    aria-expanded="false" aria-controls="collapseExample">
+    +
+</button> &nbsp; <span class="badge badge-danger">Employees</span>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <div class="container">
+            <form [formGroup]="empform" (ngSubmit)="submit()">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="inputcd">Emp-Code</label>
+                        <input type="text" class="form-control" formControlName="empcode" id="inputcd">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputename">Emp-Name</label>
+                        <input type="text" class="form-control" formControlName="ename" id="inputename">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputState">Department</label>
+                        <select id="inputState" class="form-control" formControlName="did">
+                            <option selected value="">Choose Department</option>
+                            <option *ngFor="let d of getalldept" value="{{d.did}}">{{d.deptname}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="inputcd1">Joining-Date</label>
+                        <input type="date" class="form-control" id="inputcd1" formControlName="doj">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputename1">Mobile</label>
+                        <input type="text" class="form-control" id="inputename1" formControlName="contact">
+
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputState1">Position</label>
+                        <select id="inputState1" class="form-control" formControlName="posid">
+                            <option selected value="">Choose Position</option>
+                            <option *ngFor="let p of getallposition" value="{{p.posid}}">{{p.posname}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="inputcd2">Email</label>
+                        <input type="email" class="form-control" id="inputcd2" formControlName="email">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputename2">Status</label>
+                        <select id="inputename2" class="form-control" formControlName="status">
+                            <option selected value="">Choose Status</option>
+                            <option value="Active">Active</option>
+                            <option value="Blocked">Blocked</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputState2">EndDate</label>
+                        <input type="date" class="form-control" id="inputState2" formControlName="enddate">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputState3">Photo</label>
+                        <input type="file" id="file"  class="form-control" (change)="handleFileInput($event.target.files)" required>
+                    </div>
+                    <div *ngIf="imagePath">
+                        <img [src]="['http://localhost:4000/uploads/'+ imagePath]" width="100px" height="100px" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Confirm</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="table-responsive-lg mt-1">
+    <table class="table table-bordered" >
+        <thead class="bg-dark text-white">
+            <tr>
+                <th scope="col">emp.Code</th>
+                <th scope="col">emp.Name</th>
+                <th scope="col">Photo</th>
+                <th scope="col">contact</th>
+                <th scope="col">department</th>
+                <th scope="col">position</th>
+                <th scope="col">email</th>
+                <th scope="col">status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of getallemp">
+                <td>{{p.empcode}}</td>
+                <td>{{p.ename}}</td>
+                <td ><img [src]="['http://localhost:4000/uploads/'+ p.image]" class="rounded" width="100px" height="100px"></td>
+                <td>{{p.contact}}</td>
+                <td>{{p.deptname}}</td>
+                <td>{{p.posname}}</td>
+                <td>{{p.email}}</td>
+
+              
+                
+                <td><span [ngClass]="p.status=='Active'?'badge badge-success':'badge badge-danger'">{{p.status}}</span>
+                </td>
+                <td><button class="btn btn-outline-info btn-sm" [routerLink]="['./edit',p.empid]" type="button"
+                        data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                        aria-controls="collapseExample">
+                        <i class="fas fa-user-edit"></i>
+                    </button>&nbsp;
+                    <button type="button"  (click)="deleteemp(p.empid)" class="btn btn-outline-danger btn-sm "><i
+                            class="far fa-trash-alt"></i></button>
+                </td>
+            </tr>
+
+
+        </tbody>
+
+    </table>
+</div>

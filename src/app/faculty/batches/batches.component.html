@@ -1,0 +1,100 @@
+<h3>{{errorMsg}}</h3>
+<h3>Manage Batches</h3>
+<hr>
+<p>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+    aria-expanded="false" aria-controls="collapseExample">
+    +
+  </button>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    <div class="container">
+      <form [formGroup]="batchform" (ngSubmit)="submit()">
+        <h3>New Batch</h3>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">BatchCode</label>
+            <input type="text" class="form-control" formControlName="bcode" id="inputPassword4" placeholder="Code">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputAddress">BatchName</label>
+            <input type="text" class="form-control" id="inputAddress" formControlName="batchname"
+              placeholder="Batch Name">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Batch Type</label>
+            <select class="custom-select mr-sm-2" formControlName="batchtype" id="inlineFormCustomSelect">
+              <option selected value="" disabled>Select-Type</option>
+              <option value="club">Club</option>
+              <option value="gen">General</option>
+              <option value="oto">OneToOne</option>
+            </select>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Course Name</label>
+            <select class="custom-select mr-sm-2" formControlName="cid" id="inlineFormCustomSelect">
+              <option selected value="" disabled>Select-Type</option>
+              <option *ngFor="let c of getallcourse" value="{{c.cid}}">{{c.cname}}</option>
+
+
+            </select>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">StartDate</label>
+            <input type="date" class="form-control" formControlName="startdate" id="inputPassword4" placeholder="Code">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">EndDate</label>
+            <input type="date" class="form-control" formControlName="enddate" id="inputPassword4" placeholder="Code">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">StartTime</label>
+            <input type="time" class="form-control" formControlName="starttime" id="inputPassword4" placeholder="Code">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">EndTime</label>
+            <input type="time" class="form-control" formControlName="endtime" id="inputPassword4" placeholder="Code">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="level">Status</label>
+            <select class="custom-select mr-sm-2" formControlName="status" id="inlineFormCustomSelect1">
+              <option selected value="" disabled>Status</option>
+              <option value="Active">Active</option>
+              <option value="Blocked">Blocked</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Group-Link</label>
+            <input type="text" class="form-control" formControlName="grplink" id="" placeholder="http://">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample"
+          aria-expanded="false" aria-controls="collapseExample">Save</button>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- <p-progressSpinner *ngIf="value1!=100" ></p-progressSpinner> -->
+<!-- <p-progressSpinner  *ngIf="value1!=100"  [style]="{width: '50px', height: '50px'}" strokeWidth="3" fill="#EEEEEE" animationDuration="1s"></p-progressSpinner> -->
+<!-- <p-progressBar  [value]="value1" *ngIf="value1!=100" ></p-progressBar> -->
+<!-- <p-progressBar [value]="value" mode="indeterminate" *ngIf="value1!=100" [style]="{'height': '6px'}"></p-progressBar> -->
+<div class="row row-cols-1 row-cols-md-4 ">
+  <div class="col mb-2 " *ngFor="let s of getallbacthes">
+    <div class="card h-100 aa">
+      <h3 class="m-2 text-center ">{{s.batchname | uppercase}}</h3>
+      <h4 class="m-2 text-center ">{{s.batchtype | uppercase}}</h4>
+      <hr>
+      <div class="card-body text-center">
+        <h5 class="card-title">BatchCode:-&nbsp;{{s.bcode | uppercase}} </h5>
+        <p class="badge badge-danger">StartDate:-&nbsp;{{s.startdate | date:'mediumDate'}}</p>
+        <p>StartTime:-&nbsp;{{s.starttime }}</p>
+        <a href="#" class="btn btn-primary" [routerLink]="['./batchstudent',s.batchid]"><i class="pi pi-users"
+            style="font-size: 1em"></i></a>
+      </div>
+    </div>
+  </div>
+
+</div>

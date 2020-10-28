@@ -1,0 +1,69 @@
+
+<p-toast position="top-center" key="tc"></p-toast>
+<h3>BatchStudentList <button class="btn btn-outline-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample"
+        aria-expanded="false" aria-controls="collapseExample">
+        <i class="pi pi-user-plus"></i>
+    </button></h3>
+<hr>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <div class="container">
+            <form [formGroup]="mbsform" (ngSubmit)="submitstd()">
+                <br>
+                <h3>Add-Students</h3>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="inputPassword4">Student Name</label>
+                        <select class="custom-select mr-sm-2" formControlName="sid" (change)="getemail($event)">
+                            <option selected value="" disabled>Select-Student</option>
+                            <option *ngFor="let s of addstudent" value="{{s.sid}}">
+                                <span>{{s.fn}}&nbsp;{{s.mn}}&nbsp;{{s.ln}}</span>
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save & Add</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<table class="row-border hover" datatable>
+    <thead>
+        <tr>
+            <th>BatchName</th>
+            <th>Student name</th>
+            <th>StudentCode</th>
+            <th>Mobile</th>
+            <th>Email</th>
+            <!-- <th>GroupLink</th> -->
+            <th>Type</th>
+            <th>Added @</th>
+            <th>Send-Mail</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let s of getstudent">
+            <td >{{s.batchname}}</td>
+            <td>{{s.fn}}&nbsp;{{s.mn}}&nbsp;{{s.ln}}</td>
+            <td>{{s.scode}}</td>
+            <td>{{s.mobile}}</td>
+            <td>{{s.email}}</td>
+            <!-- <td>{{s.grplink}}</td> -->
+            <td>{{s.studenttype}}</td>
+            <td>{{s.add_date | date:'shortDate'}}</td>
+            <td><button class="btn btn-outline-info btn-sm" (click)="sendmail(s.bsid)" ><i class="pi pi-envelope"></i></button></td>
+            <td><button class="btn btn-outline-danger btn-sm" (click)="deletems(s.sid)"><i class="pi pi-trash"></i></button></td>
+        </tr>
+
+    </tbody>
+
+</table>
+
+<!-- <table>
+    <tr>
+        <td>{{countall.sc}}</td>
+    </tr>
+</table> -->

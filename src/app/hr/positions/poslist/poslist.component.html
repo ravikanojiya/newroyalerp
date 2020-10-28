@@ -1,0 +1,32 @@
+<div class="table-responsive mt-1">
+    <table class="table table-bordered">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Position-Code</th>
+                <th scope="col">Position</th>
+                <th scope="col">Short</th>
+                <th scope="col">Level</th>
+                <th scope="col">Status</th>
+                <th >Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of getallposition">
+                <th scope="row">{{p.posid}}</th>
+                <td>{{p.poscode}}</td>
+                <td>{{p.posname}}</td>
+                <td>{{p.posshort}}</td>
+                <td>{{p.poslevel}}</td>
+                <td><span [ngClass]="p.status=='Active'?'badge badge-success':'badge badge-danger'">{{p.status}}</span></td>
+                <td ><button  type="button" class="btn btn-outline-info btn-md " data-toggle="modal"
+                        data-target="#myModal" [routerLink]="['./edit',p.posid]"><i class="fas fa-user-edit"></i></button> &nbsp;
+                        <button  type="button" (click)="deletepos(p.posid)" class="btn btn-outline-danger btn-md " ><i class="far fa-trash-alt"></i></button>
+                    </td>
+            </tr>
+         
+           
+        </tbody>
+        
+    </table>
+</div>

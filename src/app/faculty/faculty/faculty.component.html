@@ -1,0 +1,71 @@
+<div class="btn-group dropleft pull-right">
+    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        Welcome&nbsp;:&nbsp;{{getname.username | uppercase}}
+    </button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" routerLink='./batches'>Batches</a>
+        <!-- <a class="dropdown-item" routerLink='./timetable'>TimeTable</a> -->
+        <a class="dropdown-item" routerLink='./msession'>Sessions</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" routerLink='./mprofile'>Profile</a>
+    </div>
+</div>
+<h3>Faculty</h3>
+<hr>
+<!-- <div class="container">
+    <div class="row">
+      <div class="col-6 mx-auto mt-5 p-3 bg-light border border-info">
+        <form [formGroup]="infoForm" (ngSubmit)="sendMail()" #form="ngForm">
+          <label for="nameInp"></label>
+          <input type="text" id="nameInp" class="form-control border-info" formControlName="name" placeholder="name">
+
+          <div *ngIf="name.invalid && (name.dirty || name.touched)"
+               class="alert alert-danger p-1">
+            <p *ngIf="name.errors.required" class="mb-0">
+              Name is required.
+            </p>
+            <p *ngIf="name.errors.minlength" class="mb-0">
+              Name must be at least 3 characters long.
+            </p>
+          </div>
+          <label for="mailInp"></label>
+          <input type="text" id="mailInp" class="form-control border-info" formControlName="email" placeholder="email">
+
+          <div *ngIf="email.invalid && (email.dirty || email.touched)"
+               class="alert alert-danger p-1">
+
+            <p *ngIf="email.errors.required" class="mb-0">
+              Email is required.
+            </p>
+            <p *ngIf="email.errors.email" class="mb-0">
+              Email is incorrect.
+            </p>
+          </div>
+
+          <div class="text-right mt-3">
+            <button class="btn btn-info" [disabled]="form.invalid">Send</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div> -->
+<div class="row">
+    <div class="card text-white bg-dark col-2 mb-3 mr-3" style="max-width: 18rem;">
+        <!-- <div class="card-header">TotalBatches :- {{batchcount[0].fbc }}</div> -->
+    </div>
+    <!-- <div class="card text-white bg-primary col-3 mb-3 mr-3" style="max-width: 18rem;">
+        <div class="card-header">No.Students:-</div>
+    </div>
+    <div class="card text-white bg-primary col-3 mb-3 mr-3" style="max-width: 18rem;">
+        <div class="card-header">:-</div>
+    </div>
+    <div class="card text-white bg-primary col-3 mb-3 mr-3" style="max-width: 18rem;">
+        <div class="card-header">TotalBatches:-</div>
+    </div> -->
+
+</div>
+<hr>
+<div class="container-fluid">
+    <router-outlet></router-outlet>
+</div>

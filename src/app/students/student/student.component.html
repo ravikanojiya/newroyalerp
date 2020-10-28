@@ -1,0 +1,17 @@
+
+<div class="btn-group dropleft pull-right">
+    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        Welcome&nbsp;:&nbsp;{{getname.username | uppercase}}
+    </button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" routerLink='./'>Students</a>
+        <a class="dropdown-item" routerLink='./managebatch'>Batches</a>
+        <a class="dropdown-item" routerLink='./studentreg'>Student Register</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" routerLink='./mprofile'>Profile</a>
+    </div>
+</div>
+<div class="container-fluid">
+    <router-outlet></router-outlet>
+</div>
